@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "CommandBag.Console": {
+      "commandName": "Project"
+    }
+  }
+}

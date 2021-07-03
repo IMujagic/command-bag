@@ -7,6 +7,6 @@ namespace CommandBag.Core
 {
     public interface IDomainCommand
     {
-        Result Execute(CommandPayload context);
+        Result Execute(string[] args);
     }
 }

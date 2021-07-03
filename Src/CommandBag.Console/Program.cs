@@ -21,8 +21,8 @@ namespace CommandBag.Console
                 return;
             }
 
-            var builder = serviceCollection.BuildServiceProvider();
-            var runner = builder.GetService<ICommandRunner>();
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+            var runner = serviceProvider.GetService<ICommandRunner>();
 
             runner.ResolveAndRun(args);
         }

@@ -19,10 +19,7 @@ namespace CommandBag.Commands
         {
             var instance = _commandResolver(args[0]);
 
-            var paramInstance = new CommandPayload();
-            paramInstance.ReadArgs(args);
-
-            instance.Execute(paramInstance);
+            instance.Execute(args);
         }
     }
 }

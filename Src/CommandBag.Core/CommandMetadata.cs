@@ -43,6 +43,7 @@ namespace CommandBag.Core
                 {
                     var a = (CommandDescriptionAttribute)attribute;
                     description = a.Description;
+                    continue;
                 }
             }
 

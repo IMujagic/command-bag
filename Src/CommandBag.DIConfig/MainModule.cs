@@ -16,7 +16,7 @@ namespace CommandBag.DIConfig
     public class MainModule
     {
         public static List<CommandMetadata> CommandMetadataList = new List<CommandMetadata>();
-
+        
         public static void Load(IServiceCollection serviceCollection)
         {
             var servicesAssembly = typeof(TodoService).Assembly;
@@ -39,20 +39,19 @@ namespace CommandBag.DIConfig
                     // add each job metadata to list which is later used to see available jobs
                     CommandMetadataList.Add(CommandMetadata.FromType(implType));
 
+                    //TODO: Check if NULL and if really inherits from IDomainCommand
+
                     return serviceCollection.AddTransient(implType);
                 })
                 .ToList();
 
-
-            serviceCollection.AddTransient<Func<string, IDomainCommand>>(serviceProvider => key =>
+            serviceCollection.AddTransient<Func<string, object>>(serviceProvider => key =>
             {
                 var type = commandAssembly.GetTypes()
                     .Where(x => !x.GetTypeInfo().IsAbstract && x.Name.Equals(key))
                     .SingleOrDefault();
 
-                //TODO: Check if NULL and If really inherits from IDomainCommand
-
-                return (IDomainCommand)serviceProvider.GetService(type);
+                return serviceProvider.GetService(type);
             });
 
             serviceCollection.AddTransient<ICommandRunner, CommandRunner>();

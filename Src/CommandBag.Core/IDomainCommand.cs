@@ -5,8 +5,8 @@ using System.Text;
 
 namespace CommandBag.Core
 {
-    public interface IDomainCommand
+    public interface IDomainCommand<T>
     {
-        Result Execute(string[] args);
+        Result Execute(T payload);
     }
 }

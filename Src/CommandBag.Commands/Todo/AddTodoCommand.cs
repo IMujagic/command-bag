@@ -10,8 +10,7 @@ namespace CommandBag.Commands.Todo
 {
     [CommandGroup("Todo")]
     [CommandDescription("This command will take the todo item name from payload and save it.")]
-    [CommandPayloadType(typeof(AddTodoPayload))]
-    public class AddTodoCommand : IDomainCommand
+    public class AddTodoCommand : IDomainCommand<AddTodoPayload>
     {
         private readonly ITodoService _todoService;
 
@@ -20,8 +19,7 @@ namespace CommandBag.Commands.Todo
             this._todoService = todoService;
         }
 
-        
-        public Result Execute(string[] args)
+        public Result Execute(AddTodoPayload payload)
         {
             return Result.Ok();
         }

@@ -20,23 +20,32 @@ namespace CommandBag.Commands
 
         public void ResolveAndRun(string[] args)
         {
-            var instance = _commandResolver(args[0]);
-            var methodInfo = instance.GetType().GetMethod("Execute");
-            var parameter = methodInfo.GetParameters().Single();
+            var commandClassInstance = _commandResolver(args[0]);
 
+            var executeMethodInfo = commandClassInstance.GetType().GetMethod(nameof(IDomainCommand<object>.Execute));
+            var payloadParameter = executeMethodInfo.GetParameters().Single();
+
+            var deserializedPayload = DeserializePayload(args[1], payloadParameter);
+
+            executeMethodInfo.Invoke(commandClassInstance, new[] { deserializedPayload });
+        }
+
+        private static object DeserializePayload(string payload, ParameterInfo parameter)
+        {
             var JSONCovert = typeof(JsonConvert);
             var parameterTypes = new[] { typeof(string) };
-            var deserializer = JSONCovert.GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Where(i => i.Name.Equals("DeserializeObject", StringComparison.InvariantCulture))
+
+            var deserializeMethod = JSONCovert.GetMethods(BindingFlags.Public | BindingFlags.Static)
+                .Where(i => i.Name.Equals(nameof(JsonConvert.DeserializeObject), StringComparison.InvariantCulture))
                 .Where(i => i.IsGenericMethod)
                 .Where(i => i.GetParameters().Select(a => a.ParameterType).SequenceEqual(parameterTypes))
                 .Single();
-            
-            deserializer = deserializer.MakeGenericMethod(parameter.ParameterType);
 
-            var o = deserializer.Invoke(null, new object[] { args[1] });
+            var deserializedPayload = deserializeMethod
+                .MakeGenericMethod(parameter.ParameterType)
+                .Invoke(null, new object[] { payload });
 
-            methodInfo.Invoke(instance, new[] { o });
+            return deserializedPayload;
         }
     }
 }

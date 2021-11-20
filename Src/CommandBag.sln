@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandBag.UnitTests", "Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandBag.DIConfig", "CommandBag.DIConfig\CommandBag.DIConfig.csproj", "{D8A52305-5F8E-4CC4-AB43-FD2D9579A3EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandBag.Web", "CommandBag.Web\CommandBag.Web.csproj", "{07BBE66A-874C-462A-AC46-D7671BC19FD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{D8A52305-5F8E-4CC4-AB43-FD2D9579A3EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A52305-5F8E-4CC4-AB43-FD2D9579A3EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A52305-5F8E-4CC4-AB43-FD2D9579A3EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07BBE66A-874C-462A-AC46-D7671BC19FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BBE66A-874C-462A-AC46-D7671BC19FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BBE66A-874C-462A-AC46-D7671BC19FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BBE66A-874C-462A-AC46-D7671BC19FD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{773F8574-E96F-48CA-A661-E95CEBFEF529} = {D373BDA0-CDD1-44C6-B1D8-A87EAC19896B}
 		{403C28B0-5B02-43D1-9A80-4511D3ABC4FB} = {8F790A54-D05B-4F2E-9921-DD70DA5AC418}
 		{BAD07EA9-E477-4058-B6D6-695FEA8807B2} = {0E08194F-71A2-4F38-B9B6-40482929C98D}
+		{07BBE66A-874C-462A-AC46-D7671BC19FD2} = {8F790A54-D05B-4F2E-9921-DD70DA5AC418}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D1FAF706-8882-47FC-A26F-50BF03FBA89B}

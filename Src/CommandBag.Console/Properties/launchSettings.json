@@ -1,8 +1,7 @@
 {
   "profiles": {
     "CommandBag.Console": {
-      "commandName": "Project",
-      "commandLineArgs": "AddTodoCommand \"{ \\\"name\\\": \\\"Ismar\\\", \\\"isDone\\\": \\\"true\\\" }\""
+      "commandName": "Project"
     }
   }
 }

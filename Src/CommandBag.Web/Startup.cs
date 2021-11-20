@@ -44,6 +44,7 @@ namespace CommandBag.Web
             }
 
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
 
             app.UseRouting();

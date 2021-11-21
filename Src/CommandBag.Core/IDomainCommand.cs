@@ -9,4 +9,9 @@ namespace CommandBag.Core
     {
         Result Execute(T payload);
     }
+
+    public interface IDomainCommand
+    {
+        Result Execute();
+    }
 }

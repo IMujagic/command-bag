@@ -18,16 +18,24 @@ namespace CommandBag.Commands
             _commandResolver = commandResolver;
         }
 
-        public void ResolveAndRun(string[] args)
+        public void ResolveAndRun(string commandName, string payload)
         {
-            var commandClassInstance = _commandResolver(args[0]);
+            var commandClassInstance = _commandResolver(commandName);
 
-            var executeMethodInfo = commandClassInstance.GetType().GetMethod(nameof(IDomainCommand<object>.Execute));
-            var payloadParameter = executeMethodInfo.GetParameters().Single();
+            if(!string.IsNullOrWhiteSpace(payload))
+            {
+                var executeMethodInfo = commandClassInstance.GetType().GetMethod(nameof(IDomainCommand<object>.Execute));
+                var payloadParameter = executeMethodInfo.GetParameters().Single();
 
-            var deserializedPayload = DeserializePayload(args[1], payloadParameter);
+                var deserializedPayload = DeserializePayload(payload, payloadParameter);
 
-            executeMethodInfo.Invoke(commandClassInstance, new[] { deserializedPayload });
+                executeMethodInfo.Invoke(commandClassInstance, new[] { deserializedPayload });
+            }
+            else
+            {
+                var executeMethodInfo = commandClassInstance.GetType().GetMethod(nameof(IDomainCommand.Execute));
+                executeMethodInfo.Invoke(commandClassInstance, null);
+            }
         }
 
         private static object DeserializePayload(string payload, ParameterInfo parameter)

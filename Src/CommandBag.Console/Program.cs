@@ -24,7 +24,10 @@ namespace CommandBag.Console
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var runner = serviceProvider.GetService<ICommandRunner>();
 
-            runner.ResolveAndRun(args);
+            var commandName = args[0];
+            var payload = args.Length == 2 ? args[1] : null;
+
+            runner.ResolveAndRun(commandName, payload);
         }
 
         private static void ShowAvailableCommands(List<CommandMetadata> commandMetadataList)

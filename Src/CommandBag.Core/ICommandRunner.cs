@@ -6,6 +6,6 @@ namespace CommandBag.Core
 {
     public interface ICommandRunner
     {
-        void ResolveAndRun(string[] args);
+        void ResolveAndRun(string commandName, string payload);
     }
 }

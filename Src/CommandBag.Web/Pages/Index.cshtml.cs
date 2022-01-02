@@ -13,13 +13,12 @@ namespace CommandBag.Web.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public List<CommandMetadata> Commands { get; private set; }
 
         public IndexModel(ILogger<IndexModel> logger, ICommandRunner runner)
         {
             _logger = logger;
         }
-
-        public List<CommandMetadata> Commands { get; private set; }
 
         public void OnGet()
         {

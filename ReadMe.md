@@ -1,8 +1,8 @@
 ### Introduction
 
-Overal inspiration comes from my desire to have a project where I can just define a new command using some convention, implement the command, define the command payload and everything will automatically become available for execution (either using CLI or Web).
+Overal inspiration comes from my desire to have a project where I can just define a new functionality using some convention, implement it, define the input data (payload) and everything will automatically become available for execution (either using CLI or Web).
 
-In the past, for many times I was in the situation where I needed to create or maintain the project that just executes different commands either as a part of the bigger project or as a general-purpose project that holds some cross-project commands and tools. The purpose of those commands is broad and literally the command can do anything. For example, scheduled jobs that just copy some data, specific exports/backups from database or multiple databases, scheduled downloads, reports, health checks, triggers, etc... Basically anything that can be executed as an independent/isolated piece of functionality on demand or scheduled.
+With `CommandBag` you have a possibility to write any kind of functionality that will be packed in a command object. All defined commands will be automatically listed in a web app and in a console project and will be available for execution.
 
 The idea is to have commands isolated from each other and that each command represents only one piece of functionality. If there are some commands that operate in the same context they can be grouped, but that's only for easier navigation through the list of available commands. 
 
@@ -18,6 +18,7 @@ The idea is to have commands isolated from each other and that each command repr
 All commands are automatically discoverable and available for execution by just following a simple convention during implementation.
 
 For a command to be automatically available for execution it needs to implement the `IDomainCommand<T>` interface where the `T` represents the command payload type.
+If you have a command without the payload, just implement the `IDomainCommand`. 
 
 Here is an command example:
 
